@@ -1,1 +1,1 @@
-# shopping-cart_js
+# Javascript Projects - Shopping Cart
