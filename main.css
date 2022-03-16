@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Lato:400,700");
 
 :root {
-  --primaryColor: #f09d51;
+  --primaryColor: #ff9e00;
   --mainWhite: #fff;
   --mainBlack: #222;
   --mainGrey: #ececec;
@@ -26,7 +26,8 @@ body {
   width: 100%;
   display: flex;
   align-items: center;
-  background: rgb(231, 226, 221);
+  background: #0e0066;
+  color: var(--mainWhite);
   z-index: 1;
 }
 .navbar-center {
@@ -55,7 +56,7 @@ body {
   color: var(--mainWhite);
 }
 /* --------------- End of Navbar ---------------- */
-/* --------------- Hero ---------------- */
+/* --------------- Hero ---------------- 
 .hero {
   min-height: calc(100vh - 60px);
   background: url("./images/hero-bcg.jpeg") center/cover no-repeat;
@@ -90,7 +91,7 @@ body {
   background: transparent;
   color: var(--primaryColor);
 }
-/* --------------- End of Hero ---------------- */
+ --------------- End of Hero ---------------- */
 /* --------------- Products ---------------- */
 
 .products {
