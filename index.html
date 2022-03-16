@@ -6,9 +6,131 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Shopping Cart</title>
   <!-- font awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css" integrity="sha512-10/jx2EXwxxWqCLX/hHth/vu2KY3jCF70dCQB8TSgNjbCVAC/8vai53GfMDrO2Emgwccf2pJqxct9ehpzG+MTw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <!-- custom css -->
+  <link rel="stylesheet" href="./main.css">
 </head>
 <body>
-  
+  <!-- navbar -->
+    <div class="navbar">
+      <div class="navbar-center">
+        <span class="nav-icon">
+          <i class="fas fa-bars"></i>
+        </span>
+        <div class="cart-btn">
+          <span class="nav-icon">
+            <i class="fas fa-cart-plus"></i>
+          </span>
+          <div class="cart-items">0</div>
+        </div>
+      </div>
+    </div>
+  <!-- navbar -->
+
+  <!-- hero 
+  <header class="hero">
+    <div class="banner">
+      <h1 class="banner-title">Shopping Cart</h1>
+      <button class="banner-btn">show now</button>
+    </div>
+  </header>
+ -->
+
+  <!-- products -->
+  <section class="products">
+    <div class="section-title">
+      <h2>our products</h2>
+    </div>
+    <div class="products-center">
+      <!-- single products -->
+      <article class="product">
+        <div class="img-container">
+          <img src="./images/product-1.jpeg" alt="Product" class="product-img">
+          <button class="bag-btn" data-id="1">
+            <i class="fas fa-shopping-cart"></i>
+            add
+          </button>
+        </div>
+        <h3>queen panel bed</h3>
+        <h4>16€</h4>
+      </article>
+      <!-- single products -->
+      <!-- single products -->
+      <article class="product">
+        <div class="img-container">
+          <img src="./images/product-1.jpeg" alt="Product" class="product-img">
+          <button class="bag-btn" data-id="1">
+            <i class="fas fa-shopping-cart"></i>
+            add
+          </button>
+        </div>
+        <h3>queen panel bed</h3>
+        <h4>16€</h4>
+      </article>
+      <!-- single products -->
+      <!-- single products -->
+      <article class="product">
+        <div class="img-container">
+          <img src="./images/product-1.jpeg" alt="Product" class="product-img">
+          <button class="bag-btn" data-id="1">
+            <i class="fas fa-shopping-cart"></i>
+            add
+          </button>
+        </div>
+        <h3>queen panel bed</h3>
+        <h4>16€</h4>
+      </article>
+      <!-- single products -->
+      <!-- single products -->
+      <article class="product">
+        <div class="img-container">
+          <img src="./images/product-1.jpeg" alt="Product" class="product-img">
+          <button class="bag-btn" data-id="1">
+            <i class="fas fa-shopping-cart"></i>
+            add
+          </button>
+        </div>
+        <h3>queen panel bed</h3>
+        <h4>16€</h4>
+      </article>
+      <!-- single products -->
+    </div>
+  </section>
+  <!-- products -->
+  <!-- cart  -->
+  <div class="cart-overlay">
+    <div class="cart">
+      <span class="close-cart">
+        <i class="fas fa-window-close"></i>
+      </span>
+      <h2>votre panier</h2>
+      <div class="cart-content">
+        <!-- cart item -->
+        <div class="cart-item">
+          <img src="./images/product-1.jpeg" alt="product">
+          <div>
+            <h4>queen panel bed</h4>
+            <h5>16€</h5>
+            <span class="remove-item">
+              <i class="fa-solid fa-trash"></i>
+            </span>
+          </div>
+
+          <div>
+            <i class="fas fa-chevron-up"></i>
+            <p class="item-amount">1</p>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+        </div>
+        <!-- cart item -->
+      </div>
+      <div class="cart-footer">
+          <h3>votre total : <span class="cart-total">0</span>€</h3>
+          <button class="clear-cart banner-btn">vider panier</button>
+      </div>
+    </div>
+  </div>
+  <!-- cart -->
+  <script src="./app.js"></script>
 </body>
 </html>
