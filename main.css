@@ -76,6 +76,7 @@ body {
   letter-spacing: var(--mainSpacing);
   margin-bottom: 3rem;
 }
+--------------- End of Hero ---------------- */
 .banner-btn {
   padding: 1rem 3rem;
   text-transform: uppercase;
@@ -91,7 +92,7 @@ body {
   background: transparent;
   color: var(--primaryColor);
 }
- --------------- End of Hero ---------------- */
+ 
 /* --------------- Products ---------------- */
 
 .products {
