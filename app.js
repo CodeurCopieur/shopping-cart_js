@@ -53,7 +53,7 @@ class UI {
             class="product-img">
             <button class="bag-btn" data-id=${product.id}>
               <i class="fas fa-shopping-cart"></i>
-              add
+              add to cart 
             </button>
           </div>
           <h3>${product.title}</h3>
@@ -63,7 +63,7 @@ class UI {
       `
     });
 
-    productsDOM.innerHTML = result;
+    productsDOM.insertAdjacentHTML('beforeend', result)
   }
 
   getBagButtons() { 
@@ -98,7 +98,7 @@ class UI {
         // afficher l'article du panier
         this.addCartItem(cartItem)
         // montrer le panier
-
+        this.showCart();
       });
     })
   }
@@ -112,16 +112,17 @@ class UI {
       itemsTotal += item.amount;
     })
 
+    // prix total du panier
     cartTotal.textContent = parseFloat(tempTotal.toFixed(2));
+    // nombre total d'items dans le panier
     cartItems.textContent = itemsTotal;
 
-    console.log(cartTotal, cartItems);
   }
 
   addCartItem(item) {
-    const div = document.createElement('div');
-    div.classList.add('cart-items');
-    div.innerHTML = `
+    const article = document.createElement('article');
+    article.classList.add('cart-item');
+    article.innerHTML = `
       <img src=${item.image} alt="product">
       <div>
         <h4>${item.title}</h4>
@@ -138,7 +139,66 @@ class UI {
       </div>
     `;
 
-    cartContent.appendChild(div);
+    // insérer article dans l'élément .cart-content
+    cartContent.insertAdjacentElement('beforeend', article)
+  }
+
+  showCart() {
+    cartOverlay.classList.add('transparentBcg');
+    cartDOM.classList.add('showCart');
+  }
+
+  hideCart() {
+    cartOverlay.classList.remove('transparentBcg');
+    cartDOM.classList.remove('showCart');
+  }
+
+  setupApp() {
+    cart = Storage.getCart();
+    this.setCartValues(cart);
+    this.populatedCart(cart);
+    cartBtn.addEventListener('click', this.showCart);
+    closeCart.addEventListener('click', this.hideCart);
+  }
+
+  populatedCart(cart) {
+    cart.forEach( item => {
+      this.addCartItem(item);
+    })
+  }
+
+  cartLogic() {
+    // vider le panier au click sur le bouton .cart-btn
+    clearCart.addEventListener('click', () => {
+      this.clearCart();
+    });
+  }
+
+  clearCart() {
+    let cartItems = cart.map(item => item.id);
+    cartItems.forEach( id => this.removeItem(id));
+
+    console.log(cartContent.children);
+
+    while (cartContent.children.length > 0) {
+      cartContent.removeChild(cartContent.children[0])
+    }
+
+    this.hideCart();
+  }
+
+  removeItem(id) {
+    cart = cart.filter( item => item.id !== id);
+    this.setCartValues(cart);
+    Storage.saveCart(cart);
+    let button = this.getSingleButton(id);
+    button.disabled = false;
+    button.innerHTML = `<i class="fas fa-shopping-cart"></i>
+    add to cart `;
+  }
+
+  getSingleButton(id) {
+    return buttonDOM.find( btn => btn.dataset.id === id)
   }
 }
 
@@ -157,17 +217,26 @@ class Storage {
     localStorage.setItem('cart', JSON.stringify(cart))
   }
 
+  static getCart() {
+    return localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
+  }
+
 }
 
 document.addEventListener('DOMContentLoaded', ()=> {
   const ui = new UI();
   const products = new Products();
+  // setup app
+  ui.setupApp();
   // obtenir tous les produits
- products.getProducts().then( products => {
-  ui.displayProducts( products)
-  Storage.saveProducts(products);
- }).then(() =>{
-   ui.getBagButtons()
- });
+  products.getProducts().then( products => {
+    // afficher les produit dans l'élément .products-center
+    ui.displayProducts( products)
+    Storage.saveProducts(products);
+  }).then(() =>{
+    // fonctionnalité sur les boutons(event : click), verifier si le produit est dans le panier
+    ui.getBagButtons();
+    ui.cartLogic();
+  });
  
 })
